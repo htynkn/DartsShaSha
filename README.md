@@ -14,6 +14,6 @@ Libgdx是基于Apache Licence 2.0协议的，详细信息可以去[libgdx官网]
 
 [第一篇文章](http://www.cnblogs.com/htynkn/archive/2013/02/14/libgdx-game-1.html)对应的代码是Tag [page1](https://github.com/htynkn/DartsShaSha/tree/page1)。
 
-编译好的APK在(http://pan.baidu.com/share/link?shareid=328840&uk=4127624209)，可以下载下来试试。
+编译好的APK在[http://pan.baidu.com/share/link?shareid=328840&uk=4127624209](http://pan.baidu.com/share/link?shareid=328840&uk=4127624209)，可以下载下来试试。
 
 

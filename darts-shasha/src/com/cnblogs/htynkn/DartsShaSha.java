@@ -30,8 +30,7 @@ public class DartsShaSha extends InputAdapter implements ApplicationListener {
 		LabelStyle labelStyle = new LabelStyle(new BitmapFont(), Color.BLACK); // 创建一个Label样式，使用默认黑色字体
 		Label label = new Label("FPS:", labelStyle); // 创建标签，显示的文字是FPS：
 		label.setName("fpsLabel"); // 设置标签名称为fpsLabel
-		label.setY(0); // 设置Y为0，即显示在最下面
-		label.setX(480 - label.getTextBounds().width); // 设置X值，显示为最后一个字紧靠屏幕最右侧
+		label.setPosition(0, 0); // 设置X,Y为0，即显示在左下角
 		stage.addActor(label); // 将标签添加到舞台
 
 		atlas = new TextureAtlas("pack/default.pack"); // 获取图册
@@ -68,7 +67,6 @@ public class DartsShaSha extends InputAdapter implements ApplicationListener {
 		// fps标签处理
 		Label label = (Label) stage.getRoot().findActor("fpsLabel"); // 获取名为fpsLabel的标签
 		label.setText("FPS:" + Gdx.graphics.getFramesPerSecond());
-		label.setX(480 - label.getTextBounds().width); // 更新X值以保证显示位置正确性
 
 		// 开始处理飞镖
 		Actor[] projectile = projectiles.getChildren().begin();
@@ -115,8 +113,14 @@ public class DartsShaSha extends InputAdapter implements ApplicationListener {
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+		if (projectiles.getChildren().size >= 5) { // 限制飞镖的数量为5个
+			return false;
+		}
 		Vector3 vector3 = new Vector3(screenX, screenY, 0);
 		stage.getCamera().unproject(vector3); // 坐标转化
+		if (vector3.x < man.getX() + 10) { // 如果触摸太靠近左侧就不响应
+			return false;
+		}
 		projectiles.addActor(ProjectileFactory.createProjectile(
 				atlas.findRegion("Projectile"), man, vector3)); // 添加新飞镖到飞镖组
 		return true;

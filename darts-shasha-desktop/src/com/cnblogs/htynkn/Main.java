@@ -8,9 +8,14 @@ public class Main {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "darts-shasha";
 		cfg.useGL20 = false;
-		cfg.width = 480;
-		cfg.height = 320;
-		
+		int i = 0;
+		if (i == 1) {
+			cfg.width = 480;
+			cfg.height = 320;
+		} else {
+			cfg.width = 800;
+			cfg.height = 480;
+		}
 		new LwjglApplication(new DartsShaSha(), cfg);
 	}
 }
