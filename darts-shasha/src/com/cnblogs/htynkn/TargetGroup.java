@@ -11,10 +11,10 @@ public class TargetGroup extends Group {
 	public TargetGroup(AtlasRegion region) {
 		super();
 		int minY = 0;
-		int maxY = (int) (320 - region.getRegionHeight()); // 最大的Y值
+		int maxY = (int) (320 - region.getRegionHeight() / 4); // 最大的Y值
 		int tempY = 0;
 		for (int i = 0; i < 3; i++) {
-			Image image = new Image(region);
+			Scythe image = new Scythe(region);
 			image.setX(480 - image.getWidth());
 			// 开始判断Y值是否符合要求
 			boolean flag = false;
@@ -29,14 +29,14 @@ public class TargetGroup extends Group {
 						flag = true;
 						break;
 					} else if (tempY < tempActor.getY()) { // 如果生成的Y值小于当前怪兽的Y值，则判断生成的Y值加上高度后是否合适
-						if ((tempY + region.getRegionHeight()) >= tempActor
+						if ((tempY + region.getRegionHeight() / 4) >= tempActor
 								.getY()) {
 							flag = true;
 							break;
 						}
 					} else { // 如果生成的Y值大于当前怪兽的Y值，则判断当前怪兽的Y值加上高度后是否合适
 						if (tempY <= (tempActor.getY() + region
-								.getRegionHeight())) {
+								.getRegionHeight() / 4)) {
 							flag = true;
 							break;
 						}
@@ -44,8 +44,8 @@ public class TargetGroup extends Group {
 				}
 			} while (flag);
 			image.setY(tempY);
-			this.AddMove(image, MathUtils.random(3f, 8f)); //怪兽移动效果
-			this.addActor(image); //添加到组中
+			this.AddMove(image, MathUtils.random(3f, 8f)); // 怪兽移动效果
+			this.addActor(image); // 添加到组中
 		}
 	}
 

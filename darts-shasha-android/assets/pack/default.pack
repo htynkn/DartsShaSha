@@ -1,25 +1,32 @@
 
 default.png
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Linear,Linear
 repeat: none
+scythe
+  rotate: false
+  xy: 1, 43
+  size: 200, 192
+  orig: 200, 192
+  offset: 0, 0
+  index: -1
 Player
   rotate: false
-  xy: 1, 23
+  xy: 1, 1
   size: 27, 40
   orig: 27, 40
   offset: 0, 0
   index: -1
 Target
   rotate: false
-  xy: 30, 23
+  xy: 203, 195
   size: 27, 40
   orig: 27, 40
   offset: 0, 0
   index: -1
 Projectile
   rotate: false
-  xy: 1, 1
+  xy: 30, 21
   size: 20, 20
   orig: 20, 20
   offset: 0, 0

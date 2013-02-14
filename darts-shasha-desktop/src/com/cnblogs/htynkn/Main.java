@@ -9,7 +9,7 @@ public class Main {
 		cfg.title = "darts-shasha";
 		cfg.useGL20 = false;
 		int i = 0;
-		if (i == 1) {
+		if (i == 0) {
 			cfg.width = 480;
 			cfg.height = 320;
 		} else {

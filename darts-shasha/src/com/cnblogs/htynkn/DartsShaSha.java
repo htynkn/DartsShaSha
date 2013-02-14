@@ -40,7 +40,7 @@ public class DartsShaSha extends InputAdapter implements ApplicationListener {
 		man.setY(160 - man.getHeight() / 2); // 设置Y值，以让图片在中间显示
 		stage.addActor(man); // 将主角添加到舞台
 
-		targetGroup = new TargetGroup(atlas.findRegion("Target")); // 创建怪兽群
+		targetGroup = new TargetGroup(atlas.findRegion("scythe")); // 创建怪兽群
 		stage.addActor(targetGroup); // 将怪兽添加到舞台
 
 		projectiles = new Group();
