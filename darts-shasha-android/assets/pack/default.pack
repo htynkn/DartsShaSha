@@ -1,0 +1,26 @@
+
+default.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Player
+  rotate: false
+  xy: 1, 23
+  size: 27, 40
+  orig: 27, 40
+  offset: 0, 0
+  index: -1
+Target
+  rotate: false
+  xy: 30, 23
+  size: 27, 40
+  orig: 27, 40
+  offset: 0, 0
+  index: -1
+Projectile
+  rotate: false
+  xy: 1, 1
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
