@@ -15,13 +15,15 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.cnblogs.htynkn.controller.TargetController;
 
 public class DartsShaSha extends InputAdapter implements ApplicationListener {
+
 	Stage stage;
 	Group projectiles;
 	TextureAtlas atlas;
 	Image man;
-	TargetGroup targetGroup;
+	TargetController targetController;
 
 	@Override
 	public void create() {
@@ -40,10 +42,11 @@ public class DartsShaSha extends InputAdapter implements ApplicationListener {
 		man.setY(160 - man.getHeight() / 2); // 设置Y值，以让图片在中间显示
 		stage.addActor(man); // 将主角添加到舞台
 
-		targetGroup = new TargetGroup(atlas.findRegion("scythe")); // 创建怪兽群
-		stage.addActor(targetGroup); // 将怪兽添加到舞台
+		targetController = new TargetController(atlas.findRegion("scythe")); // 创建怪兽群
+		stage.addActor(targetController); // 将怪兽添加到舞台
 
 		projectiles = new Group();
+		projectiles.setName("projectiles");
 		stage.addActor(projectiles); // 添加飞镖组到舞台
 
 		InputMultiplexer multiplexer = new InputMultiplexer(); // 多输入接收器
@@ -68,23 +71,10 @@ public class DartsShaSha extends InputAdapter implements ApplicationListener {
 		Label label = (Label) stage.getRoot().findActor("fpsLabel"); // 获取名为fpsLabel的标签
 		label.setText("FPS:" + Gdx.graphics.getFramesPerSecond());
 
-		// 开始处理飞镖
-		Actor[] projectile = projectiles.getChildren().begin();
-		Actor[] targets = targetGroup.getChildren().begin();
-		for (int i = 0; i < projectiles.getChildren().size; i++) {
-			Actor actor = projectile[i];
-			for (int j = 0; j < targetGroup.getChildren().size; j++) {
-				Actor target = targets[j];
-				if (ProjectileFactory.attackAlive(target, actor)) {
-					targetGroup.removeActor(target);
-					projectiles.removeActor(actor);
-					break;
-				}
-			}
-		}
-
+		targetController.update(this.stage); //调用update方法，处理怪兽的逻辑
+		
 		// 如果飞镖已经飞到则刪除
-		projectile = projectiles.getChildren().begin();
+		Actor[] projectile = projectiles.getChildren().begin();
 		for (int j = 0; j < projectiles.getChildren().size; j++) {
 			Actor actor = projectile[j];
 			if (!ProjectileFactory.checkAlive(actor)) {

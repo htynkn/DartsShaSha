@@ -28,7 +28,7 @@ public class Scythe extends Actor {
 		this.setWidth(titleWidth); // 设置宽度
 		this.setHeight(titleHeight + margin + pixHeight); // 设置高度
 		this.maxHp = 2; // 设置总血量为1
-		this.currentHp = 1; // 设置当前血量为1
+		this.currentHp = 2; // 设置当前血量为1
 		TextureRegion[][] temp = atlasRegion.split(titleWidth, titleHeight); // 分割图块
 		walkFrames = new TextureRegion[4]; // 获取第二行的4帧
 		for (int i = 0; i < 4; i++) {
@@ -54,5 +54,17 @@ public class Scythe extends Actor {
 		batch.draw(pix, this.getX(), this.getY() + this.titleHeight
 				+ this.margin, this.titleWidth, this.pixHeight); // 绘制
 		pixmap.dispose();
+	}
+
+	public void beAttacked(int damage) {
+		if (this.currentHp > damage) { // 如果血量大于伤害就扣除响应数值
+			currentHp = currentHp - damage;
+		} else if (this.currentHp > 0) { // 如果血量小于伤害但是仍有血量就让血量归零
+			currentHp = 0;
+		}
+	}
+
+	public Boolean isAlive() {
+		return this.currentHp > 0;
 	}
 }
