@@ -2,28 +2,27 @@ package com.cnblogs.htynkn;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.cnblogs.htynkn.controller.DartsController;
 import com.cnblogs.htynkn.controller.TargetController;
+import com.cnblogs.htynkn.listener.DartsListener;
 
-public class DartsShaSha extends InputAdapter implements ApplicationListener {
+public class DartsShaSha implements ApplicationListener {
 
 	Stage stage;
-	Group projectiles;
 	TextureAtlas atlas;
 	Image man;
 	TargetController targetController;
+	DartsController dartsController;
 
 	@Override
 	public void create() {
@@ -45,12 +44,14 @@ public class DartsShaSha extends InputAdapter implements ApplicationListener {
 		targetController = new TargetController(atlas.findRegion("scythe")); // 创建怪兽群
 		stage.addActor(targetController); // 将怪兽添加到舞台
 
-		projectiles = new Group();
-		projectiles.setName("projectiles");
-		stage.addActor(projectiles); // 添加飞镖组到舞台
+		dartsController = new DartsController(atlas.findRegion("Projectile"));
+		dartsController.setName("dartsController");
+		stage.addActor(dartsController); // 添加飞镖组到舞台
 
 		InputMultiplexer multiplexer = new InputMultiplexer(); // 多输入接收器
-		multiplexer.addProcessor(this); // 添加自身作为接收
+		GestureDetector gestureDetector = new GestureDetector(
+				new DartsListener(this.stage));
+		multiplexer.addProcessor(gestureDetector); // 添加手势识别
 		multiplexer.addProcessor(stage); // 添加舞台
 		Gdx.input.setInputProcessor(multiplexer); // 设置多输入接收器为接收器
 	}
@@ -71,16 +72,8 @@ public class DartsShaSha extends InputAdapter implements ApplicationListener {
 		Label label = (Label) stage.getRoot().findActor("fpsLabel"); // 获取名为fpsLabel的标签
 		label.setText("FPS:" + Gdx.graphics.getFramesPerSecond());
 
-		targetController.update(this.stage); //调用update方法，处理怪兽的逻辑
-		
-		// 如果飞镖已经飞到则刪除
-		Actor[] projectile = projectiles.getChildren().begin();
-		for (int j = 0; j < projectiles.getChildren().size; j++) {
-			Actor actor = projectile[j];
-			if (!ProjectileFactory.checkAlive(actor)) {
-				projectiles.removeActor(actor);
-			}
-		}
+		targetController.update(this.stage); // 调用update方法，处理怪兽的逻辑
+		dartsController.update(this.stage);
 	}
 
 	@Override
@@ -99,20 +92,5 @@ public class DartsShaSha extends InputAdapter implements ApplicationListener {
 	public void resume() {
 		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		if (projectiles.getChildren().size >= 5) { // 限制飞镖的数量为5个
-			return false;
-		}
-		Vector3 vector3 = new Vector3(screenX, screenY, 0);
-		stage.getCamera().unproject(vector3); // 坐标转化
-		if (vector3.x < man.getX() + 10) { // 如果触摸太靠近左侧就不响应
-			return false;
-		}
-		projectiles.addActor(ProjectileFactory.createProjectile(
-				atlas.findRegion("Projectile"), man, vector3)); // 添加新飞镖到飞镖组
-		return true;
 	}
 }

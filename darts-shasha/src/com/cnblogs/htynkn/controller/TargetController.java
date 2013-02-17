@@ -8,29 +8,31 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.cnblogs.htynkn.ProjectileFactory;
 import com.cnblogs.htynkn.Scythe;
+import com.cnblogs.htynkn.elements.Dart;
 
 public class TargetController extends IController {
 	@Override
-public void update(Stage stage) {
-	Group projectiles = (Group) stage.getRoot().findActor("projectiles"); // 获取飞镖所在Group
-	Actor[] projectile = projectiles.getChildren().begin();
-	Actor[] targets = this.getChildren().begin();
-	for (int i = 0; i < projectiles.getChildren().size; i++) {
-		Actor actor = projectile[i];
-		for (int j = 0; j < this.getChildren().size; j++) {
-			Actor target = targets[j];
-			if (ProjectileFactory.attackAlive(target, actor)) {
-				Scythe scythe = (Scythe) target;
-				scythe.beAttacked(1);
-				projectiles.removeActor(actor);
-				if (!scythe.isAlive()) {
-					this.removeActor(target);
+	public void update(Stage stage) {
+		DartsController dartsController = (DartsController) stage.getRoot()
+				.findActor("dartsController");
+		Actor[] projectile = dartsController.getChildren().begin();
+		Actor[] targets = this.getChildren().begin();
+		for (int i = 0; i < dartsController.getChildren().size; i++) {
+			Actor actor = projectile[i];
+			for (int j = 0; j < this.getChildren().size; j++) {
+				Scythe scythe = (Scythe) targets[j];
+				Dart dart = (Dart) actor;
+				if (ProjectileFactory.attackAlive(scythe, dart)) {
+					scythe.beAttacked(dart.getPower());
+					dartsController.removeActor(actor);
+					if (!scythe.isAlive()) {
+						this.removeActor(scythe);
+					}
+					break;
 				}
-				break;
 			}
 		}
 	}
-}
 
 	public TargetController(AtlasRegion region) {
 		super();
