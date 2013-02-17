@@ -1,16 +1,22 @@
 package com.cnblogs.htynkn.controller;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.cnblogs.htynkn.DartsGame;
 import com.cnblogs.htynkn.ProjectileFactory;
 import com.cnblogs.htynkn.Scythe;
 import com.cnblogs.htynkn.elements.Dart;
 
 public class TargetController extends IController {
+
+	Sound great;
+
 	@Override
 	public void update(Stage stage) {
 		DartsController dartsController = (DartsController) stage.getRoot()
@@ -27,6 +33,7 @@ public class TargetController extends IController {
 					dartsController.removeActor(actor);
 					if (!scythe.isAlive()) {
 						this.removeActor(scythe);
+						great.play();
 					}
 					break;
 				}
@@ -72,6 +79,7 @@ public class TargetController extends IController {
 			image.setY(tempY);
 			this.AddMove(image, MathUtils.random(3f, 8f)); // 怪兽移动效果
 			this.addActor(image); // 添加到组中
+			great = DartsGame.getManager().get("audio/great.wav", Sound.class);
 		}
 	}
 

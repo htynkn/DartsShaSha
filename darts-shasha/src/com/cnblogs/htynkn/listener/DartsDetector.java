@@ -15,7 +15,9 @@ public class DartsDetector extends GestureDetector {
 	public DartsDetector(Stage stage, GestureListener listener) {
 		super(listener);
 		this.stage = stage;
+		this.setLongPressSeconds(1f); //设置长按的判断标准为1秒
 	}
+
 	@Override
 	public boolean touchUp(float x, float y, int pointer, int button) {
 		DartsController dartsController = (DartsController) stage.getRoot()
@@ -33,7 +35,7 @@ public class DartsDetector extends GestureDetector {
 		dart.setX(man.getX() + man.getWidth() / 2);
 		dart.setY(man.getY() + man.getHeight() / 2);
 		dart.setTarget(vector3.x, vector3.y);
-		if (this.isLongPressed()) { //如果是长按就变成红色飞镖
+		if (this.isLongPressed()) { // 如果是长按就变成红色飞镖
 			dart.setPower(2); // 设置杀伤力为2
 			dart.setColor(Color.RED); // 设置成红色
 		}
