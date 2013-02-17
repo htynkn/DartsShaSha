@@ -7,13 +7,13 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.cnblogs.htynkn.controller.DartsController;
 import com.cnblogs.htynkn.controller.TargetController;
+import com.cnblogs.htynkn.listener.DartsDetector;
 import com.cnblogs.htynkn.listener.DartsListener;
 
 public class DartsShaSha implements ApplicationListener {
@@ -49,8 +49,8 @@ public class DartsShaSha implements ApplicationListener {
 		stage.addActor(dartsController); // 添加飞镖组到舞台
 
 		InputMultiplexer multiplexer = new InputMultiplexer(); // 多输入接收器
-		GestureDetector gestureDetector = new GestureDetector(
-				new DartsListener(this.stage));
+		DartsDetector gestureDetector = new DartsDetector(this.stage,
+				new DartsListener());
 		multiplexer.addProcessor(gestureDetector); // 添加手势识别
 		multiplexer.addProcessor(stage); // 添加舞台
 		Gdx.input.setInputProcessor(multiplexer); // 设置多输入接收器为接收器
