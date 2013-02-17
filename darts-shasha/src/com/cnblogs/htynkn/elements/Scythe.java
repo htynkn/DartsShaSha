@@ -1,4 +1,4 @@
-package com.cnblogs.htynkn;
+package com.cnblogs.htynkn.elements;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;

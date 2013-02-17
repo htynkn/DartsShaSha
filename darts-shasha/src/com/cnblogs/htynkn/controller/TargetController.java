@@ -1,17 +1,15 @@
 package com.cnblogs.htynkn.controller;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.cnblogs.htynkn.DartsGame;
-import com.cnblogs.htynkn.ProjectileFactory;
-import com.cnblogs.htynkn.Scythe;
 import com.cnblogs.htynkn.elements.Dart;
+import com.cnblogs.htynkn.elements.Scythe;
 
 public class TargetController extends IController {
 
@@ -28,7 +26,7 @@ public class TargetController extends IController {
 			for (int j = 0; j < this.getChildren().size; j++) {
 				Scythe scythe = (Scythe) targets[j];
 				Dart dart = (Dart) actor;
-				if (ProjectileFactory.attackAlive(scythe, dart)) {
+				if (this.attackAlive(scythe, dart)) {
 					scythe.beAttacked(dart.getPower());
 					dartsController.removeActor(actor);
 					if (!scythe.isAlive()) {
@@ -39,6 +37,13 @@ public class TargetController extends IController {
 				}
 			}
 		}
+	}
+
+	private boolean attackAlive(Scythe scythe, Dart dart) {
+		Rectangle rectangle = new Rectangle(scythe.getX(), scythe.getY(),
+				scythe.getWidth(), scythe.getHeight()); // 创建一个矩形
+		return rectangle.contains(dart.getX() + dart.getWidth() / 2,
+				dart.getY() + dart.getHeight() / 2); // 判断是否在矩阵中，即是否击中
 	}
 
 	public TargetController(AtlasRegion region) {
@@ -79,7 +84,7 @@ public class TargetController extends IController {
 			image.setY(tempY);
 			this.AddMove(image, MathUtils.random(3f, 8f)); // 怪兽移动效果
 			this.addActor(image); // 添加到组中
-			great = DartsGame.getManager().get("audio/great.wav", Sound.class);
+			great = DartsGame.getManager().get("audio/great.ogg", Sound.class);
 		}
 	}
 

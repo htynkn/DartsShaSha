@@ -29,7 +29,7 @@ public class DartsController extends IController {
 
 	public DartsController(AtlasRegion region) {
 		this.region = region;
-		this.bing = DartsGame.getManager().get("audio/bing.wav", Sound.class);
+		this.bing = DartsGame.getManager().get("audio/bing.ogg", Sound.class);
 	}
 
 	public void AddDarts(Dart dart) {

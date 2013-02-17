@@ -27,7 +27,7 @@ public class LoadingScreen implements Screen {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		if (DartsGame.getManager().update()) {
-			//game.setScreen(new ShaScreen());
+			game.setScreen(new ShaScreen());
 		}
 		stage.act();
 		stage.draw();
@@ -43,8 +43,8 @@ public class LoadingScreen implements Screen {
 	public void show() {
 		AssetManager manager = DartsGame.getManager();
 		manager.load("audio/background.ogg", Music.class);
-		manager.load("audio/bing.wav", Sound.class);
-		manager.load("audio/great.wav", Sound.class);
+		manager.load("audio/bing.ogg", Sound.class);
+		manager.load("audio/great.ogg", Sound.class);
 		manager.load("pack/sha/default.pack", TextureAtlas.class);
 
 		stage = new Stage(480, 320, true);

@@ -15,10 +15,11 @@ public class DartsGame extends Game {
 		Screen screen = new LoadingScreen(this);
 		this.setScreen(screen);
 	}
-public static AssetManager getManager() {
-	if (manager == null) {
-		manager = new AssetManager();
+
+	public static AssetManager getManager() {
+		if (manager == null) {
+			manager = new AssetManager();
+		}
+		return manager;
 	}
-	return manager;
-}
 }
