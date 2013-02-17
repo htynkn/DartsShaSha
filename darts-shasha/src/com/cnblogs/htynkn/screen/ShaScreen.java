@@ -1,5 +1,6 @@
 package com.cnblogs.htynkn.screen;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
@@ -8,6 +9,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -15,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.cnblogs.htynkn.DartsGame;
 import com.cnblogs.htynkn.controller.DartsController;
 import com.cnblogs.htynkn.controller.TargetController;
+import com.cnblogs.htynkn.elements.Scythe;
 import com.cnblogs.htynkn.listener.DartsDetector;
 import com.cnblogs.htynkn.listener.DartsListener;
 
@@ -26,6 +29,11 @@ public class ShaScreen implements Screen {
 	TargetController targetController;
 	DartsController dartsController;
 	Music backgroundMusic;
+	Game game;
+
+	public ShaScreen(Game game) {
+		this.game = game;
+	}
 
 	@Override
 	public void render(float delta) {
@@ -40,6 +48,14 @@ public class ShaScreen implements Screen {
 
 		targetController.update(this.stage); // 调用update方法，处理怪兽的逻辑
 		dartsController.update(this.stage);
+
+		Actor[] targets = targetController.getChildren().begin();
+		for (int i = 0; i < targetController.getChildren().size; i++) {
+			Scythe scythe = (Scythe) targets[i];
+			if (scythe.getX() < man.getX() + 10) {
+				// game.setScreen(new GameoverScreen());
+			}
+		}
 	}
 
 	@Override
@@ -101,8 +117,7 @@ public class ShaScreen implements Screen {
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
-
+		DartsGame.getStatisticsService().onResume();
 	}
 
 	@Override

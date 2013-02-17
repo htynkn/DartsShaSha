@@ -8,6 +8,15 @@
         android:minSdkVersion="5"
         android:targetSdkVersion="17" />
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.READ_LOGS" >
+    </uses-permission>
+
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
@@ -17,9 +26,17 @@
             android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="BaiduMobAd_CHANNEL"
+            android:value="Test" />
+        <meta-data
+            android:name="BaiduMobAd_STAT_ID"
+            android:value="ece7eafbce" />
     </application>
 
 </manifest>

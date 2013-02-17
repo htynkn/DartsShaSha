@@ -27,7 +27,7 @@ public class LoadingScreen implements Screen {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		if (DartsGame.getManager().update()) {
-			game.setScreen(new ShaScreen());
+			game.setScreen(new ShaScreen(this.game));
 		}
 		stage.act();
 		stage.draw();
