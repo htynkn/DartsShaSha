@@ -16,4 +16,16 @@ public class MainActivity extends AndroidApplication {
 		DartsGame.setStatisticsService(new AndroidStatisticsService(this));
 		initialize(dartsGame, cfg);
 	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		DartsGame.getStatisticsService().onResume();
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		DartsGame.getStatisticsService().onPause();
+	}
 }

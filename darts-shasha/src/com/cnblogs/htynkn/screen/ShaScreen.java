@@ -37,8 +37,10 @@ public class ShaScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
+		
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		
 		stage.act();
 		stage.draw();
 
@@ -47,13 +49,13 @@ public class ShaScreen implements Screen {
 		label.setText("FPS:" + Gdx.graphics.getFramesPerSecond());
 
 		targetController.update(this.stage); // 调用update方法，处理怪兽的逻辑
-		dartsController.update(this.stage);
+		dartsController.update(this.stage); //调用update方法，处理飞镖的逻辑
 
 		Actor[] targets = targetController.getChildren().begin();
 		for (int i = 0; i < targetController.getChildren().size; i++) {
 			Scythe scythe = (Scythe) targets[i];
 			if (scythe.getX() < man.getX() + 10) {
-				// game.setScreen(new GameoverScreen());
+				//游戏结束
 			}
 		}
 	}
@@ -66,6 +68,8 @@ public class ShaScreen implements Screen {
 
 	@Override
 	public void show() {
+		DartsGame.getStatisticsService().onEvent("gamestart", "eventLabel", 1);
+
 		stage = new Stage(480, 320, true);
 
 		LabelStyle labelStyle = new LabelStyle(new BitmapFont(), Color.BLACK); // 创建一个Label样式，使用默认黑色字体
@@ -111,13 +115,15 @@ public class ShaScreen implements Screen {
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void resume() {
-		DartsGame.getStatisticsService().onResume();
+		if (!DartsGame.getManager().update()) {
+			DartsGame.getManager().clear();
+			game.setScreen(new LoadingScreen(this.game)); //本来这情况应该是恢复资源和游戏状态的，但是这里简单处理
+		}
 	}
 
 	@Override

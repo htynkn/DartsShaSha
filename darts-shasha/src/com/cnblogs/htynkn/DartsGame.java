@@ -1,6 +1,7 @@
 package com.cnblogs.htynkn;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.cnblogs.htynkn.extension.IStatisticsService;
@@ -11,7 +12,7 @@ public class DartsGame extends Game {
 
 	public static AssetManager manager;
 	public static IStatisticsService statisticsService;
-	
+
 	@Override
 	public void create() {
 		Screen screen = new LoadingScreen(this);
