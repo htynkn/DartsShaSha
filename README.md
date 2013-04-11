@@ -35,7 +35,7 @@ Libgdx是基于Apache Licence 2.0协议的，详细信息可以去[libgdx官网]
 ---------
 地址：[http://www.cnblogs.com/htynkn/archive/2013/02/17/libgdx-game-3.html](http://www.cnblogs.com/htynkn/archive/2013/02/17/libgdx-game-3.html)
 
-对应代码是Tag [page2](https://github.com/htynkn/DartsShaSha/tree/page3)。
+对应代码是Tag [page3](https://github.com/htynkn/DartsShaSha/tree/page3)。
 
 编译好的APK在[http://pan.baidu.com/share/link?shareid=385272&uk=4127624209](http://pan.baidu.com/share/link?shareid=385272&uk=4127624209)。
 
