@@ -41,3 +41,7 @@ Libgdx是基于Apache Licence 2.0协议的，详细信息可以去[libgdx官网]
 
 
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/htynkn/dartsshasha/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
