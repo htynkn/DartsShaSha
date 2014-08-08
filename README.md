@@ -11,13 +11,13 @@ Libgdx是基于Apache Licence 2.0协议的，详细信息可以去[libgdx官网]
 
 对应关系
 ========
-教程发布在我的博客上 [http://htynkn.cnblogs.com/](http://htynkn.cnblogs.com/)
+教程发布在我的博客上 [http://www.huangyunkun.com/](http://www.huangyunkun.com/)
 
 文章和代码的对应关系如下：
 
 第一篇文章
 --------
-地址：[http://www.cnblogs.com/htynkn/archive/2013/02/14/libgdx-game-1.html](http://www.cnblogs.com/htynkn/archive/2013/02/14/libgdx-game-1.html)
+地址：[http://www.huangyunkun.com/2013/02/14/libgdx-game-1/](http://www.huangyunkun.com/2013/02/14/libgdx-game-1/)
 
 对应的代码是Tag [page1](https://github.com/htynkn/DartsShaSha/tree/page1)。
 
@@ -25,7 +25,7 @@ Libgdx是基于Apache Licence 2.0协议的，详细信息可以去[libgdx官网]
 
 第二篇文章
 ---------
-地址：[http://www.cnblogs.com/htynkn/archive/2013/02/17/libgdx-game-2.html](http://www.cnblogs.com/htynkn/archive/2013/02/17/libgdx-game-2.html)
+地址：[http://www.huangyunkun.com/2013/02/17/libgdx-game-2/](http://www.huangyunkun.com/2013/02/17/libgdx-game-2/)
 
 对应代码是Tag [page2](https://github.com/htynkn/DartsShaSha/tree/page2)。
 
@@ -33,7 +33,7 @@ Libgdx是基于Apache Licence 2.0协议的，详细信息可以去[libgdx官网]
 
 第三篇文章
 ---------
-地址：[http://www.cnblogs.com/htynkn/archive/2013/02/17/libgdx-game-3.html](http://www.cnblogs.com/htynkn/archive/2013/02/17/libgdx-game-3.html)
+地址：[http://www.huangyunkun.com/2013/03/17/libgdx-game-3/](http://www.huangyunkun.com/2013/03/17/libgdx-game-3/)
 
 对应代码是Tag [page3](https://github.com/htynkn/DartsShaSha/tree/page3)。
 
