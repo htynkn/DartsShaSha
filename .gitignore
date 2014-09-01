@@ -31,6 +31,11 @@ proguard/
 
 #Android部分结束
 
+
+#Mac部分开始
+.DS_Store
+#Mac部分结束
+
 #Java部分开始
 *.class
 
@@ -39,3 +44,7 @@ proguard/
 *.war
 *.ear
 #Java部分结束
+
+#Gradle
+out
+build/
