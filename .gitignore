@@ -40,7 +40,6 @@ proguard/
 *.class
 
 # Package Files #
-*.jar
 *.war
 *.ear
 #Java部分结束
@@ -48,3 +47,4 @@ proguard/
 #Gradle
 out
 build/
+.gradle/
