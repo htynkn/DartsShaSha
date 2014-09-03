@@ -1,6 +1,8 @@
 package com.huangyunkun.screen;
 
-import com.badlogic.gdx.*;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -19,6 +21,7 @@ import com.huangyunkun.listener.DartsDetector;
 import com.huangyunkun.listener.DartsListener;
 
 import static com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import static com.huangyunkun.config.ResourceName.*;
 
 public class ShaScreen extends BaseScreen {
 
@@ -43,7 +46,7 @@ public class ShaScreen extends BaseScreen {
         stage.draw();
 
         // fps标签处理
-        Label label = (Label) stage.getRoot().findActor("fpsLabel"); // 获取名为fpsLabel的标签
+        Label label = stage.getRoot().findActor("fpsLabel"); // 获取名为fpsLabel的标签
         label.setText("FPS:" + Gdx.graphics.getFramesPerSecond());
 
         targetController.update(this.stage); // 调用update方法，处理怪兽的逻辑
@@ -72,16 +75,16 @@ public class ShaScreen extends BaseScreen {
 
         atlas = DartsGame.getManager().get("pack/sha/default.pack",
                 TextureAtlas.class); // 获取图册
-        man = new Image(atlas.findRegion("Player")); // 获取图册中的Player.png并创建image对象
+        man = new Image(atlas.findRegion(PLAYER)); // 获取图册中的Player.png并创建image对象
         man.setName("player");
         man.setX(0);
         man.setY(160 - man.getHeight() / 2); // 设置Y值，以让图片在中间显示
         stage.addActor(man); // 将主角添加到舞台
 
-        targetController = new TargetController(atlas.findRegion("scythe")); // 创建怪兽群
+        targetController = new TargetController(atlas.findRegion(SCYTHE)); // 创建怪兽群
         stage.addActor(targetController); // 将怪兽添加到舞台
 
-        dartsController = new DartsController(atlas.findRegion("Projectile"));
+        dartsController = new DartsController(atlas.findRegion(PROJECTILE));
         dartsController.setName("dartsController");
         stage.addActor(dartsController); // 添加飞镖组到舞台
 

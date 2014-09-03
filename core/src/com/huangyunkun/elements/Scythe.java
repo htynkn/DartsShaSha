@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
@@ -37,7 +37,7 @@ public class Scythe extends Actor {
         animation = new Animation(0.1f, walkFrames); // 创建动画，帧间隔0.1
     }
 
-    public void draw(SpriteBatch batch, float parentAlpha) {
+    public void draw(Batch batch, float parentAlpha) {
         stateTime += Gdx.graphics.getDeltaTime(); // 获取总时间
         currentFrame = animation.getKeyFrame(stateTime, true); // 获取当前关键帧
         batch.draw(currentFrame, this.getX(), this.getY(), this.titleWidth,
@@ -48,8 +48,8 @@ public class Scythe extends Actor {
         pixmap.setColor(Color.RED); // 设置颜色为红色
         pixmap.fillRectangle(0, 1, titleWidth * currentHp / maxHp,
                 pixHeight - 2); // 绘制血条
-        Texture pixmaptex = new Texture(pixmap); // 生成图片
-        TextureRegion pix = new TextureRegion(pixmaptex, titleWidth, pixHeight); // 切割图片
+        Texture blood = new Texture(pixmap); // 生成图片
+        TextureRegion pix = new TextureRegion(blood, titleWidth, pixHeight); // 切割图片
         batch.draw(pix, this.getX(), this.getY() + this.titleHeight
                 + this.margin, this.titleWidth, this.pixHeight); // 绘制
         pixmap.dispose();

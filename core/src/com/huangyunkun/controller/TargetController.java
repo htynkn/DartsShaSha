@@ -11,6 +11,7 @@ import com.huangyunkun.elements.Dart;
 import com.huangyunkun.elements.Scythe;
 
 import static com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
+import static com.huangyunkun.config.ResourceName.DARTS_CONTROLLER;
 
 public class TargetController extends IController {
 
@@ -18,8 +19,8 @@ public class TargetController extends IController {
 
     @Override
     public void update(Stage stage) {
-        DartsController dartsController = (DartsController) stage.getRoot()
-                .findActor("dartsController");
+        DartsController dartsController = stage.getRoot()
+                .findActor(DARTS_CONTROLLER);
         Actor[] projectile = dartsController.getChildren().begin();
         Actor[] targets = this.getChildren().begin();
         for (int i = 0; i < dartsController.getChildren().size; i++) {
@@ -56,7 +57,7 @@ public class TargetController extends IController {
             Scythe image = new Scythe(region);
             image.setX(480 - image.getWidth());
             // 开始判断Y值是否符合要求
-            boolean flag = false;
+            boolean flag;
             do {
                 flag = false;
                 tempY = MathUtils.random(minY, maxY); // 生成Y值
