@@ -1,10 +1,9 @@
 buildscript {
     repositories {
         mavenCentral()
-        mavenLocal()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.10+'
+        classpath 'com.android.tools.build:gradle:1.1.3'
     }
 }
 
@@ -16,11 +15,9 @@ allprojects {
     ext {
         appName = 'DartsShaSha'
         gdxVersion = '1.3.1'
-        roboVMVersion = '0.0.14'
     }
 
     repositories {
-        mavenLocal()
         mavenCentral()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
@@ -77,4 +74,8 @@ project(":core") {
 
 tasks.eclipse.doLast {
     delete ".project"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2'
 }
