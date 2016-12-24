@@ -13,7 +13,7 @@ import static com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 
 public class Scythe extends Actor {
     private TextureRegion[] walkFrames; // 保存每一帧
-    private Animation animation; // 动画类
+    private Animation<TextureRegion> animation; // 动画类
     private float stateTime; // 总时间
     TextureRegion currentFrame; // 当前帧
     private int titleWidth = 50; // 声明块宽度
@@ -34,7 +34,7 @@ public class Scythe extends Actor {
         for (int i = 0; i < 4; i++) {
             walkFrames[i] = temp[1][i];
         }
-        animation = new Animation(0.1f, walkFrames); // 创建动画，帧间隔0.1
+        animation = new Animation<TextureRegion>(0.1f, walkFrames); // 创建动画，帧间隔0.1
     }
 
     public void draw(Batch batch, float parentAlpha) {
