@@ -1,5 +1,7 @@
 飞镖杀杀
 ========
+[![Build Status](https://travis-ci.org/htynkn/DartsShaSha.svg?branch=master)](https://travis-ci.org/htynkn/DartsShaSha)
+
 原谅我取这么一个名字...我确实不知道该取什么名字...所以...
 
 这是一个demo，基于libgdx，主要使用了libgdx的2d ui组件。
