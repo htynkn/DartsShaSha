@@ -8,7 +8,7 @@ import com.huangyunkun.desktop.extension.DesktopStatisticsService;
 public class DesktopLauncher {
     public static void main(String[] arg) {
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
-        cfg.title = "飞镖杀杀";
+        cfg.title = "DartsShaSha";
         cfg.width = 480;
         cfg.height = 320;
         DartsGame.setStatisticsService(new DesktopStatisticsService());
