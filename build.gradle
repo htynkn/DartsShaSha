@@ -15,7 +15,7 @@ allprojects {
 
     ext {
         appName = "DartsShaSha"
-        gdxVersion = '1.9.5'
+        gdxVersion = '1.9.9'
     }
 
     repositories {
