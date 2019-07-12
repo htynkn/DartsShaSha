@@ -17,12 +17,14 @@ allprojects {
 
     ext {
         appName = "DartsShaSha"
-        gdxVersion = '1.9.9'
+        gdxVersion = '1.9.8'
+        var3dVersion = "1.0.2"
     }
 
     repositories {
         maven { url "https://maven.aliyun.com/repository/jcenter" }
         maven { url "https://maven.aliyun.com/repository/google" }
+        maven { url 'https://jitpack.io' }
     }
 }
 
@@ -32,6 +34,7 @@ project(":desktop") {
 
     dependencies {
         compile project(":core")
+        compile "com.github.Var3D.var3dframe:desktop:$var3dVersion"
         compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
     }
@@ -44,6 +47,7 @@ project(":android") {
 
     dependencies {
         compile project(":core")
+        compile "com.github.Var3D.var3dframe:android:$var3dVersion"
         compile "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi-v7a"
@@ -58,6 +62,7 @@ project(":core") {
 
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+        compile "com.github.Var3D.var3dframe:core:$var3dVersion"
     }
 }
 

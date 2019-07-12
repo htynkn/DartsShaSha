@@ -4,6 +4,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.huangyunkun.DartsGame;
 import com.huangyunkun.desktop.extension.DesktopStatisticsService;
+import var3d.net.center.desktop.VDesktopLauncher;
 
 public class DesktopLauncher {
     public static void main(String[] arg) {
@@ -12,6 +13,11 @@ public class DesktopLauncher {
         cfg.width = 480;
         cfg.height = 320;
         DartsGame.setStatisticsService(new DesktopStatisticsService());
-        new LwjglApplication(new DartsGame(), cfg);
+
+        VDesktopLauncher varListener = new VDesktopLauncher(false) {
+
+        };
+
+        new LwjglApplication(new DartsGame(varListener), cfg);
     }
 }

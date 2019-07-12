@@ -1,12 +1,12 @@
 package com.huangyunkun.controller;
 
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.huangyunkun.DartsGame;
 import com.huangyunkun.elements.Dart;
 import com.huangyunkun.elements.Scythe;
 
@@ -19,8 +19,7 @@ public class TargetController extends IController {
 
     @Override
     public void update(Stage stage) {
-        DartsController dartsController = stage.getRoot()
-                .findActor(DARTS_CONTROLLER);
+        DartsController dartsController = stage.getRoot().findActor(DARTS_CONTROLLER);
         Actor[] projectile = dartsController.getChildren().begin();
         Actor[] targets = this.getChildren().begin();
         for (int i = 0; i < dartsController.getChildren().size; i++) {
@@ -42,13 +41,13 @@ public class TargetController extends IController {
     }
 
     private boolean attackAlive(Scythe scythe, Dart dart) {
-        Rectangle rectangle = new Rectangle(scythe.getX(), scythe.getY(),
-                scythe.getWidth(), scythe.getHeight()); // 创建一个矩形
-        return rectangle.contains(dart.getX() + dart.getWidth() / 2,
-                dart.getY() + dart.getHeight() / 2); // 判断是否在矩阵中，即是否击中
+        Rectangle rectangle = new Rectangle(scythe.getX(), scythe.getY(), scythe.getWidth(),
+                scythe.getHeight()); // 创建一个矩形
+        return rectangle
+                .contains(dart.getX() + dart.getWidth() / 2, dart.getY() + dart.getHeight() / 2); // 判断是否在矩阵中，即是否击中
     }
 
-    public TargetController(AtlasRegion region) {
+    public TargetController(AssetManager assetManager, AtlasRegion region) {
         super();
         int minY = 0;
         int maxY = (int) (320 - region.getRegionHeight() / 4); // 最大的Y值
@@ -69,14 +68,12 @@ public class TargetController extends IController {
                         flag = true;
                         break;
                     } else if (tempY < tempActor.getY()) { // 如果生成的Y值小于当前怪兽的Y值，则判断生成的Y值加上高度后是否合适
-                        if ((tempY + region.getRegionHeight() / 4) >= tempActor
-                                .getY()) {
+                        if ((tempY + region.getRegionHeight() / 4) >= tempActor.getY()) {
                             flag = true;
                             break;
                         }
                     } else { // 如果生成的Y值大于当前怪兽的Y值，则判断当前怪兽的Y值加上高度后是否合适
-                        if (tempY <= (tempActor.getY() + region
-                                .getRegionHeight() / 4)) {
+                        if (tempY <= (tempActor.getY() + region.getRegionHeight() / 4)) {
                             flag = true;
                             break;
                         }
@@ -86,7 +83,7 @@ public class TargetController extends IController {
             image.setY(tempY);
             this.AddMove(image, MathUtils.random(3f, 8f)); // 怪兽移动效果
             this.addActor(image); // 添加到组中
-            great = DartsGame.getManager().get("audio/great.ogg", Sound.class);
+            great = assetManager.get("audio/great.ogg", Sound.class);
         }
     }
 
