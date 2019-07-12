@@ -10,7 +10,7 @@ import com.huangyunkun.elements.Dart;
 
 public class DartsDetector extends GestureDetector {
 
-    Stage stage;
+    private Stage stage;
 
     public DartsDetector(Stage stage, GestureDetector.GestureListener listener) {
         super(listener);
@@ -20,7 +20,7 @@ public class DartsDetector extends GestureDetector {
 
     @Override
     public boolean touchUp(float x, float y, int pointer, int button) {
-        DartsController dartsController = (DartsController) stage.getRoot().findActor("dartsController");
+        DartsController dartsController = stage.getRoot().findActor("dartsController");
         if (dartsController.getChildren().size >= 5) { // 限制飞镖的数量为5个
             return false;
         }

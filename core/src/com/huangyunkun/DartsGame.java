@@ -1,6 +1,5 @@
 package com.huangyunkun;
 
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -11,8 +10,7 @@ import var3d.net.center.VGame;
 import var3d.net.center.VListener;
 
 public class DartsGame extends VGame {
-    public static AssetManager manager;
-    public static IStatisticsService statisticsService;
+    private static IStatisticsService statisticsService;
 
     public DartsGame(VListener varListener) {
         super(varListener);
@@ -22,20 +20,11 @@ public class DartsGame extends VGame {
     @Override
     public void init() {
         this.load(Music.class, "audio/background.ogg");
-        this.load(Sound.class, "audio/bing.ogg");
-        this.load(Sound.class, "audio/great.ogg");
         this.load(TextureAtlas.class, "pack/sha/default.pack");
+        this.loadAll(Sound.class, "audio/bing.ogg", "audio/great.ogg");
 
         this.setStageLoad(LoadingStage.class);
-
         this.setStage(ShaScreen.class);
-    }
-
-    public static AssetManager getManager() {
-        if (manager == null) {
-            manager = new AssetManager();
-        }
-        return manager;
     }
 
     public static IStatisticsService getStatisticsService() {
