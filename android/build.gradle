@@ -19,6 +19,8 @@ android {
         applicationId "com.huangyunkun"
         minSdkVersion 9
         targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
     }
 
     buildTypes {
@@ -82,7 +84,7 @@ task run(type: Exec) {
     }
 
     def adb = path + "/platform-tools/adb"
-    commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.huangyunkun/com.huangyunkun.AndroidLauncher'
+    commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.huangyunkun/com.huangyunkun.android.AndroidLauncher'
 }
 
 // sets up the Android Eclipse project, using the old Ant based build.

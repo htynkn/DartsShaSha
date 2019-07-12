@@ -1,8 +1,8 @@
 buildscript {
     repositories {
-        maven { url "https://plugins.gradle.org/m2/" }
-        jcenter()
-        google()
+        maven { url "https://maven.aliyun.com/repository/jcenter" }
+        maven { url "https://maven.aliyun.com/repository/google" }
+        maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.0'
@@ -21,8 +21,8 @@ allprojects {
     }
 
     repositories {
-        jcenter()
-        google()
+        maven { url "https://maven.aliyun.com/repository/jcenter" }
+        maven { url "https://maven.aliyun.com/repository/google" }
     }
 }
 
@@ -66,5 +66,5 @@ tasks.eclipse.doLast {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.10'
+    gradleVersion = '4.6'
 }
