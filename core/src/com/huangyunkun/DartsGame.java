@@ -26,7 +26,7 @@ public class DartsGame extends VGame {
         this.load(Sound.class, "audio/great.ogg");
         this.load(TextureAtlas.class, "pack/sha/default.pack");
 
-//        this.setStageLoad(LoadingStage.class);
+        this.setStageLoad(LoadingStage.class);
 
         this.setStage(ShaScreen.class);
     }
