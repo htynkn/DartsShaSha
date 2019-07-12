@@ -13,6 +13,8 @@ import com.huangyunkun.listener.DartsDetector;
 import com.huangyunkun.listener.DartsListener;
 import var3d.net.center.VGame;
 
+import java.util.HashMap;
+
 import static com.huangyunkun.config.ResourceName.*;
 
 public class ShaScreen extends VStageAdapter {
@@ -31,11 +33,21 @@ public class ShaScreen extends VStageAdapter {
         targetController.update(this); // 调用update方法，处理怪兽的逻辑
         dartsController.update(this); //调用update方法，处理飞镖的逻辑
 
+        if (targetController.getChildren().size == 0) {
+            HashMap<String, Object> intent = new HashMap<String, Object>();
+            intent.put("score", 100);
+            intent.put("win", true);
+            this.game.setStage(FinishStage.class, "Finish", intent);
+        }
+
         Actor[] targets = targetController.getChildren().begin();
         for (int i = 0; i < targetController.getChildren().size; i++) {
             Scythe scythe = (Scythe) targets[i];
             if (scythe.getX() < man.getX() + 10) {
-                //游戏结束
+                HashMap<String, Object> intent = new HashMap<String, Object>();
+                intent.put("score", 0);
+                intent.put("win", false);
+                this.game.setStage(FinishStage.class, "Finish", intent);
             }
         }
     }
